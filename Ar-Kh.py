@@ -144,26 +144,26 @@ class MAAZCracker:
             self.old_menu()
 
 def quantum_breach_menu(self):
-    clear()
-    series_map = {
-        '1': '100000', '2': '100001', '3': '100002', 
-        '4': '100003', '5': '100004'
-    }
-    print(f"  {self.color.C}➤ Select Series:")
-    for num, prefix in series_map.items():
-        print(f"  {self.color.N}[{self.color.G}{num}{self.color.N}] {self.color.C}{prefix}")
-    
-    linex()
-    choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
-    selected_prefix = series_map.get(choice)
+        clear()
+        series_map = {
+            '1': '100000', '2': '100001', '3': '100002', 
+            '4': '100003', '5': '100004'
+        }
+        print(f"  {self.color.C}➤ Select Series:")
+        for num, prefix in series_map.items():
+            print(f"  {self.color.N}[{self.color.G}{num}{self.color.N}] {self.color.C}{prefix}")
+        
+        linex()
+        choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
+        selected_prefix = series_map.get(choice)
 
-    if not selected_prefix:
-        print(f"  {self.color.R}⚠ Invalid Series!")
-        time.sleep(2)
-        self.quantum_breach_menu()
-        return
-    
-    self.execute_breach(selected_prefix)
+        if not selected_prefix:
+            print(f"  {self.color.R}⚠ Invalid Series!")
+            time.sleep(2)
+            self.quantum_breach_menu()
+            return
+        
+        self.execute_breach(selected_prefix)
 
 
 def execute_breach(self, prefix):
