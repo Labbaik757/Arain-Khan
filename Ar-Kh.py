@@ -129,18 +129,19 @@ class MAAZCracker:
         print(f"{self.color.P}║ {self.color.C}[2] {self.color.G}CRACK 2009-2013 ACCOUNTS            {self.color.P}║")
         print(f"{self.color.P}║ {self.color.C}[0] {self.color.R}⇦ BACK TO MAIN MENU                 {self.color.P}║")
         print(f"{self.color.P}╚═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╝")
-    choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
+
+        choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
     
-    if choice in ('1', '01'):
-        self.execute_breach('100000')
-    elif choice in ('2', '02'):
-        self.quantum_breach_menu()
-    elif choice in ('0', '00'):
-        return
-    else:
-        print(f"\n  {self.color.R}⚠ Invalid choice!")
-        time.sleep(2)
-        self.old_menu()
+        if choice in ('1', '01'):
+            self.execute_breach('100000')
+        elif choice in ('2', '02'):
+            self.quantum_breach_menu()
+        elif choice in ('0', '00'):
+            return
+        else:
+            print(f"\n  {self.color.R}⚠ Invalid choice!")
+            time.sleep(2)
+            self.old_menu()
 
 def quantum_breach_menu(self):
     clear()
