@@ -165,6 +165,7 @@ def quantum_breach_menu(self):
     
     self.execute_breach(selected_prefix)
 
+
 def execute_breach(self, prefix):
     try:
         clear()
