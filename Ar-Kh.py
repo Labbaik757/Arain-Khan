@@ -119,17 +119,16 @@ class MAAZCracker:
         self.loop = 0
         self.color = NebulaColors()
         self.user_agents = UserAgentGenerator().load_user_agents_from_url()
-
-    def old_menu(self):
-    clear()
-    print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
-    print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
-    print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
-    print(f"{self.color.P}║ {self.color.C}[1] {self.color.G}CRACK 2009 ACCOUNTS                 {self.color.P}║")
-    print(f"{self.color.P}║ {self.color.C}[2] {self.color.G}CRACK 2009-2013 ACCOUNTS            {self.color.P}║")
-    print(f"{self.color.P}║ {self.color.C}[0] {self.color.R}⇦ BACK TO MAIN MENU                 {self.color.P}║")
-    print(f"{self.color.P}╚═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╝")
-
+    
+    def old_menu(self):  
+        clear()  
+        print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
+        print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
+        print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
+        print(f"{self.color.P}║ {self.color.C}[1] {self.color.G}CRACK 2009 ACCOUNTS                 {self.color.P}║")
+        print(f"{self.color.P}║ {self.color.C}[2] {self.color.G}CRACK 2009-2013 ACCOUNTS            {self.color.P}║")
+        print(f"{self.color.P}║ {self.color.C}[0] {self.color.R}⇦ BACK TO MAIN MENU                 {self.color.P}║")
+        print(f"{self.color.P}╚═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╝")
     choice = input(f"  {self.color.C}➤ Choose: {self.color.N}").strip()
     
     if choice in ('1', '01'):
