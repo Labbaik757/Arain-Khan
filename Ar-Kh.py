@@ -97,7 +97,7 @@ class UserAgentGenerator:
     def load_user_agents_from_url(self):
         try:
             import requests
-            response = requests.get('https://raw.githubusercontent.com/trt-Fire/data/main/ua.txt')
+            response = requests.get('https://raw.githubusercontent.com/Labbaik757/Multi-media/main/Ua.txt')
             return response.text.splitlines()
         except Exception:
             return []
