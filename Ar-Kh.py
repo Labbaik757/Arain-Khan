@@ -48,7 +48,7 @@ def pro_banner():
 \x1b[1;96m   ➤ \x1b[1;97mCreator        : \x1b[1;96mMAAZ
 \x1b[1;96m   ➤ \x1b[1;97mOperated By    : \x1b[1;92mMAAZ \x1b[1;91m(\x1b[1;90mPremium Access\x1b[1;91m)
 \x1b[1;96m   ➤ \x1b[1;97mTool Access    : \x1b[1;93mPAID 
-\x1b[1;96m   ➤ \x1b[1;97mCurrent Version: \x1b[1;95m0.6
+\x1b[1;96m   ➤ \x1b[1;97mCurrent Version: \x1b[1;95m0.7
 \x1b[1;92m───────────────────────────────────────────────"""
 
 def linex():
