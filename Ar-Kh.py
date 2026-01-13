@@ -166,7 +166,7 @@ class MAAZCracker:
             return
 
         targets = [prefix + ''.join(random.choices(digits, k=9)) for _ in range(limit)]
-        passlist = ['123456', '1234567', '12345678', '123456789', '1234567890', 123123']
+        passlist = ['123456', '1234567', '12345678', '123456789', '1234567890', '123123']
 
         with tred(max_workers=30) as executor:
             clear()
