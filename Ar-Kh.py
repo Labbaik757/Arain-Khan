@@ -244,7 +244,7 @@ class MAAZCracker:
         self.oks.append(uid)
 
     def handle_partial(self, uid, password):
-        print(f"\r  {self.color.Y}\x1b[1;96m   ➤ OK {self.color.G}{uid}{self.color.Y}•\x1b[1;90m{password}{self.color.W}")
+        print(f"\r  {self.color.Y}\x1b[1;96m   ➤ ✅ {self.color.G}{uid}{self.color.Y}•\x1b[1;90m{password}{self.color.W}")
         with open('/sdcard/MAAZ-OLD.txt', 'a') as f:
             f.write(f'{uid}|{password}\n')
         self.cps.append(uid)
