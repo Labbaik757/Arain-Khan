@@ -12,6 +12,21 @@ from concurrent.futures import ThreadPoolExecutor as tred
 from bs4 import BeautifulSoup as sop
 from random import choice as race
 from string import digits, ascii_letters
+# VPN Check Function - Added by Update
+def check_internet_and_vpn():
+    try:
+        import urllib.request, requests
+        urllib.request.urlopen('https://www.google.com', timeout=5)
+        ip1 = requests.get('https://api.ipify.org', timeout=5).text
+        ip2 = requests.get('https://icanhazip.com', timeout=5).text.strip()
+        if ip1 != ip2:
+            print("  \x1b[96m✓ VPN Ready\x1b[0m")
+        else:
+            input("  \x1b[93mConnect VPN then press ENTER\x1b[0m")
+        return True
+    except:
+        print("  \x1b[91mNo Internet!")
+        return False
 import urllib.parse
 import base64
 import ctypes
@@ -112,6 +127,8 @@ class MAAZCracker:
 
     def old_menu(self):
         clear()
+        if not check_internet_and_vpn():
+            return
         print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
         print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
         print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
