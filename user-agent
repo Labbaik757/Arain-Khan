@@ -1,0 +1,54 @@
+import random
+
+old_user_agents = []
+
+# Old device pools
+old_android_models = [
+    "GT-I9100", "GT-I9300", "GT-N7000", "SM-G900F", "SM-N910F",
+    "HTC One M7", "LG G2", "Sony Xperia Z", "Nexus 5", "Nexus 7"
+]
+old_android_versions = ["4.4.2", "5.0", "5.1.1", "6.0", "6.0.1", "7.0", "7.1.1"]
+old_builds = ["LRX21T", "MMB29K", "NRD90M", "KOT49H"]
+
+# Old iOS
+old_ios_models = ["iPhone5,1", "iPhone6,2", "iPhone7,2", "iPad4,1"]
+old_ios_versions = ["9_3_5", "8_4_1", "7_1_2", "10_3_3"]
+
+# Old Windows & Chrome
+old_chrome_versions = list(range(30, 70))  # Chrome 30–69
+old_windows_nt = ["5.1", "6.0", "6.1", "6.2", "6.3", "10.0"]
+
+# Generate 50,000 old user agents
+for _ in range(50000):
+    choice = random.randint(1, 10)
+    
+    if choice <= 7:  # 70% old Android
+        model = random.choice(old_android_models)
+        ver = random.choice(old_android_versions)
+        build = random.choice(old_builds)
+        chrome_ver = random.choice(old_chrome_versions)
+        ua = f"Mozilla/5.0 (Linux; Android {ver}; {model} Build/{build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{random.randint(1000,4000)}.{random.randint(10,200)} Mobile Safari/537.36"
+    
+    elif choice <= 9:  # 20% old iOS
+        model = random.choice(old_ios_models)
+        ver = random.choice(old_ios_versions)
+        ua = f"Mozilla/5.0 (iPhone; CPU iPhone OS {ver} like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/{ver[:1]}.0 Mobile/12F69 Safari/600.1.4"
+    
+    else:  # 10% old Windows (Chrome or IE)
+        if random.random() < 0.5:
+            chrome_ver = random.choice(old_chrome_versions)
+            win_ver = random.choice(old_windows_nt)
+            ua = f"Mozilla/5.0 (Windows NT {win_ver}; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{random.randint(2000,5000)}.0 Safari/537.36"
+        else:
+            ua = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"  # Old IE
+    
+    old_user_agents.append(ua)
+
+# Save to file
+with open("old_user_agents_50k.txt", "w") as f:
+    f.write("\n".join(old_user_agents))
+
+print(f"✅ Generated {len(old_user_agents)} OLD user agents (Android 4-7, old iOS, old Windows)")
+print("Sample:")
+for i in range(5):
+    print(old_user_agents[i])
