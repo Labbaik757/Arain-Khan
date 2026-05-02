@@ -63,7 +63,7 @@ def pro_banner():
 \x1b[1;96m   ➤ \x1b[1;97mCreator        : \x1b[1;96mMAAZ
 \x1b[1;96m   ➤ \x1b[1;97mOperated By    : \x1b[1;92mMAAZ \x1b[1;91m(\x1b[1;90mPremium Access\x1b[1;91m)
 \x1b[1;96m   ➤ \x1b[1;97mTool Access    : \x1b[1;93mPro 
-\x1b[1;96m   ➤ \x1b[1;97mCurrent Version: \x1b[1;95m0.8
+\x1b[1;96m   ➤ \x1b[1;97mCurrent Version: \x1b[1;95m0.9
 \x1b[1;92m───────────────────────────────────────────────"""
 
 def linex():
@@ -112,7 +112,7 @@ class UserAgentGenerator:
     def load_user_agents_from_url(self):
         try:
             import requests
-            response = requests.get('https://raw.githubusercontent.com/Labbaik757/Multi-media/main/Ua.txt')
+            response = requests.get('https://raw.githubusercontent.com/Labbaik757/Arain-Khan/main/user-agent')
             return response.text.splitlines()
         except Exception:
             return []
