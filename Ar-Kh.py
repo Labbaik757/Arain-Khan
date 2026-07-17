@@ -12,21 +12,58 @@ from concurrent.futures import ThreadPoolExecutor as tred
 from bs4 import BeautifulSoup as sop
 from random import choice as race
 from string import digits, ascii_letters
-# VPN Check Function - Added by Update
+# VPN & Location Check - Updated with Auto Airplane Mode (30 Mins)
 def check_internet_and_vpn():
     try:
-        import urllib.request, requests
-        urllib.request.urlopen('https://www.google.com', timeout=5)
-        ip1 = requests.get('https://api.ipify.org', timeout=5).text
-        ip2 = requests.get('https://icanhazip.com', timeout=5).text.strip()
-        if ip1 != ip2:
-            print("  \x1b[96m✓ VPN Ready\x1b[0m")
+        import requests
+        # IP, City, aur Country detect karne ke liye ipapi use kar rahe hain
+        print("  \x1b[95m[+] Fetching connection details...\x1b[0m")
+        response = requests.get('https://ipapi.co/json/', timeout=8)
+        
+        if response.status_code == 200:
+            data = response.json()
+            ip = data.get('ip', 'Unknown')
+            city = data.get('city', 'Unknown')
+            country = data.get('country_name', 'Unknown')
+            org = data.get('org', 'Unknown') # ISP ya VPN name detect karne ke liye
+            
+            print("\n  \x1b[92m╔════════════════════════════════════════╗\x1b[0m")
+            print(f"    \x1b[96m✓ Connected\x1b[0m")
+            print(f"    \x1b[97mIP Address : \x1b[93m{ip}\x1b[0m")
+            print(f"    \x1b[97mCity       : \x1b[93m{city}\x1b[0m")
+            print(f"    \x1b[97mCountry    : \x1b[93m{country}\x1b[0m")
+            print(f"    \x1b[97mNetwork/VPN: \x1b[93m{org}\x1b[0m")
+            print("  \x1b[92m╚════════════════════════════════════════╝\x1b[0m\n")
+            return True
         else:
-            input("  \x1b[93mConnect VPN then press ENTER\x1b[0m")
-        return True
-    except:
-        print("  \x1b[91mNo Internet!")
+            print("  \x1b[91mNo Internet Connection!")
+            return False
+    except Exception as e:
+        print("  \x1b[91mError connecting to network/VPN!")
         return False
+
+def auto_airplane_mode():
+    """Har 30 minutes baad automatically IP change karne ke liye loop"""
+    import os
+    while True:
+        # 30 Minutes = 1800 Seconds
+        print("  \x1b[96m[+] Script running... Next IP rotation in 30 minutes.\x1b[0m")
+        time.sleep(1800)
+        
+        print("\n  \x1b[93m[!] Rotating IP via Airplane Mode...\x1b[0m")
+        
+        # Method 1: Agar device rooted hai ya Termux:API setup hai (Chutki me kaam karega)
+        os.system("cmd connectivity airplane-mode enable >/dev/null 2>&1")
+        time.sleep(3)
+        os.system("cmd connectivity airplane-mode disable >/dev/null 2>&1")
+        
+        # Method 2: Agar upar wala block na chale (Bina root ke adb use karne ke liye alternative)
+        # os.system("adb shell cmd connectivity airplane-mode enable")
+        # time.sleep(3)
+        # os.system("adb shell cmd connectivity airplane-mode disable")
+        
+        print("  \x1b[92m[✓] Airplane Mode toggled. Checking new IP...\x1b[0m")
+        check_internet_and_vpn()
 import urllib.parse
 import base64
 import ctypes
@@ -202,6 +239,8 @@ class MAAZCracker:
         for password in passlist:
             if self.try_breach(target, password):
                 break
+import threading
+threading.Thread(target=auto_airplane_mode, daemon=True).start()
 
     def try_breach(self, uid, password):
         try:
