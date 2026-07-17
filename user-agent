@@ -1,54 +1,269 @@
-import random
+import requests,random
 
 old_user_agents = []
 
-# Old device pools
-old_android_models = [
-    "GT-I9100", "GT-I9300", "GT-N7000", "SM-G900F", "SM-N910F",
-    "HTC One M7", "LG G2", "Sony Xperia Z", "Nexus 5", "Nexus 7"
-]
-old_android_versions = ["4.4.2", "5.0", "5.1.1", "6.0", "6.0.1", "7.0", "7.1.1"]
-old_builds = ["LRX21T", "MMB29K", "NRD90M", "KOT49H"]
+ugen = []
 
-# Old iOS
-old_ios_models = ["iPhone5,1", "iPhone6,2", "iPhone7,2", "iPad4,1"]
-old_ios_versions = ["9_3_5", "8_4_1", "7_1_2", "10_3_3"]
+# ============================================
+# BLOCK 1: Samsung GT Series (OLD - Original)
+# ============================================
+gt = random.choice(['GT-1015','GT-1020','GT-1030','GT-1035','GT-1040','GT-1045','GT-1050','GT-1240','GT-1440','GT-1450','GT-18190','GT-18262','GT-19060I','GT-19082','GT-19083','GT-19105','GT-19152','GT-19192','GT-19300','GT-19505','GT-2000','GT-20000','GT-200s','GT-3000','GT-414XOP','GT-6918','GT-7010','GT-7020','GT-7030','GT-7040','GT-7050','GT-7100','GT-7105','GT-7110','GT-7205','GT-7210','GT-7240R','GT-7245','GT-7303','GT-7310','GT-7320','GT-7325','GT-7326','GT-7340','GT-7405','GT-7550','GT-8005','GT-8010','GT-81','GT-810','GT-8105','GT-8110','GT-8220S','GT-8410','GT-9300','GT-9320','GT-93G','GT-A7100','GT-A9500','GT-ANDROID','GT-B2710','GT-B5330','GT-B5330B','GT-B5330L','GT-B5330ZKAINU','GT-B5510','GT-B5512','GT-B5722','GT-B7510','GT-B7722','GT-B7810','GT-B9150','GT-B9388','GT-C3010','GT-C3262','GT-C3310R','GT-C3312','GT-C3312R','GT-C3313T','GT-C3322','GT-C3322i','GT-C3520','GT-C3520I','GT-C3592','GT-C3595','GT-C3782','GT-C6712','GT-E1282T','GT-E1500','GT-E2200','GT-E2202','GT-E2250','GT-E2252','GT-E2600','GT-E2652W','GT-E3210','GT-E3309','GT-E3309I','GT-E3309T','GT-G530H','GT-g900f','GT-G930F','GT-H9500','GT-I5508','GT-I5801','GT-I6410','GT-I8150','GT-I8160OKLTPA','GT-I8160ZWLTTT','GT-I8258','GT-I8262D','GT-I8268','GT-I8505','GT-I8530BAABTU','GT-I8530BALCHO','GT-I8530BALTTT','GT-I8550E','GT-i8700','GT-I8750','GT-I900','GT-I9008L','GT-i9040','GT-I9080E','GT-I9082C','GT-I9082EWAINU','GT-I9082i','GT-I9100G','GT-I9100LKLCHT','GT-I9100M','GT-I9100P','GT-I9100T','GT-I9105UANDBT','GT-I9128E','GT-I9128I','GT-I9128V','GT-I9158P','GT-I9158V','GT-I9168I','GT-I9192I','GT-I9195H','GT-I9195L','GT-I9250','GT-I9303I','GT-I9305N','GT-I9308I','GT-I9505G','GT-I9505X','GT-I9507V','GT-I9600','GT-m190','GT-M5650','GT-mini','GT-N5000S','GT-N5100','GT-N5105','GT-N5110','GT-N5120','GT-N7000B','GT-N7005','GT-N7100T','GT-N7102','GT-N7105','GT-N7105T','GT-N7108','GT-N7108D','GT-N8000','GT-N8005','GT-N8010','GT-N8020','GT-N9000','GT-N9505','GT-P1000CWAXSA','GT-P1000M','GT-P1000T','GT-P1010','GT-P3100B','GT-P3105','GT-P3108','GT-P3110','GT-P5100','GT-P5200','GT-P5210XD1','GT-P5220','GT-P6200','GT-P6200L','GT-P6201','GT-P6210','GT-P6211','GT-P6800','GT-P7100','GT-P7300','GT-P7300B','GT-P7310','GT-P7320','GT-P7500D','GT-P7500M','GT-P7500R','GT-P7500V','GT-P7501','GT-P7511','GT-S3330','GT-S3332','GT-S3333','GT-S3370','GT-S3518','GT-S3570','GT-S3600i','GT-S3650','GT-S3653W','GT-S3770K','GT-S3770M','GT-S3800W','GT-S3802','GT-S3850','GT-S5220','GT-S5220R','GT-S5222','GT-S5230','GT-S5230W','GT-S5233T','GT-s5233w','GT-S5250','GT-S5253','GT-s5260','GT-S5280','GT-S5282','GT-S5283B','GT-S5292','GT-S5300','GT-S5300L','GT-S5301','GT-S5301B','GT-S5301L','GT-S5302','GT-S5302B','GT-S5303','GT-S5303B','GT-S5310','GT-S5310B','GT-S5310C','GT-S5310E','GT-S5310G','GT-S5310I','GT-S5310L','GT-S5310M','GT-S5310N','GT-S5312','GT-S5312B','GT-S5312C','GT-S5312L','GT-S5330','GT-S5360','GT-S5360B','GT-S5360L','GT-S5360T','GT-S5363','GT-S5367','GT-S5369','GT-S5380','GT-S5380D','GT-S5500','GT-S5560','GT-S5560i','GT-S5570B','GT-S5570I','GT-S5570L','GT-S5578','GT-S5600','GT-S5603','GT-S5610','GT-S5610K','GT-S5611','GT-S5620','GT-S5670','GT-S5670B','GT-S5670HKBZTA','GT-S5690','GT-S5690R','GT-S5830','GT-S5830D','GT-S5830G','GT-S5830i','GT-S5830L','GT-S5830M','GT-S5830T','GT-S5830V','GT-S5831i','GT-S5838','GT-S5839i','GT-S6010','GT-S6010BBABTU','GT-S6012','GT-S6012B','GT-S6102','GT-S6102B','GT-S6293T','GT-S6310B','GT-S6310ZWAMID','GT-S6312','GT-S6313T','GT-S6352','GT-S6500','GT-S6500D','GT-S6500L','GT-S6790','GT-S6790L','GT-S6790N','GT-S6792L','GT-S6800','GT-S6800HKAXFA','GT-S6802','GT-S6810','GT-S6810B','GT-S6810E','GT-S6810L','GT-S6810M','GT-S6810MBASER','GT-S6810P','GT-S6812','GT-S6812B','GT-S6812C','GT-S6812i','GT-S6818','GT-S6818V','GT-S7230E','GT-S7233E','GT-S7250D','GT-S7262','GT-S7270','GT-S7270L','GT-S7272','GT-S7272C','GT-S7273T','GT-S7278','GT-S7278U','GT-S7390','GT-S7390G','GT-S7390L','GT-S7392','GT-S7392L','GT-S7500','GT-S7500ABABTU','GT-S7500ABADBT','GT-S7500ABTTLP','GT-S7500CWADBT','GT-S7500L','GT-S7500T','GT-S7560','GT-S7560M','GT-S7562','GT-S7562C','GT-S7562i','GT-S7562L','GT-S7566','GT-S7568','GT-S7568I','GT-S7572','GT-S7580E','GT-S7583T','GT-S758X','GT-S7592','GT-S7710','GT-S7710L','GT-S7898','GT-S7898I','GT-S8500','GT-S8530','GT-S8600','GT-STB919','GT-T140','GT-T150','GT-V8a','GT-V8i','GT-VC818','GT-VM919S','GT-W131','GT-W153','GT-X831','GT-X853','GT-X870','GT-X890','GT-Y8750'])
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; U; Android'
+    b=random.choice(['6','7','8','9','10','11','12','13'])
+    c = f'TL-tl; {str(gt)}'
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    h=random.randrange(73,100)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uaku2 = f'{aa} {b}; {c}) {h}.{i}.{j}.{k} {l}'
+    ugen.append(uaku2)
 
-# Old Windows & Chrome
-old_chrome_versions = list(range(30, 70))  # Chrome 30–69
-old_windows_nt = ["5.1", "6.0", "6.1", "6.2", "6.3", "10.0"]
+# ============================================
+# BLOCK 2: Windows UAs
+# ============================================
+def windows():
+    aV=str(random.choice(range(10,20)))
+    A = f"Mozilla/5.0 (Windows; U; Windows NT {str(random.choice(range(5,7)))}.1; en-US) AppleWebKit/534.{aV} (KHTML, like Gecko) Chrome/{str(random.choice(range(8,12)))}.0.{str(random.choice(range(552,661)))}.0 Safari/534.{aV}"
+    bV=str(random.choice(range(1,36)))
+    bx=str(random.choice(range(34,38)))
+    bz=f"5{bx}.{bV}"
+    B=f"Mozilla/5.0 (Windows NT {str(random.choice(range(5,7)))}.{str(random.choice(['2','1']))}) AppleWebKit/{bz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12,42)))}.0.{str(random.choice(range(742,2200)))}.{str(random.choice(range(1,120)))} Safari/{bz}"
+    cV=str(random.choice(range(1,36)))
+    cx=str(random.choice(range(34,38)))
+    cz=f"5{cx}.{cV}"
+    C=f"Mozilla/5.0 (Windows NT 6.{str(random.choice(['2','1']))}; WOW64) AppleWebKit/{cz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12,42)))}.0.{str(random.choice(range(742,2200)))}.{str(random.choice(range(1,120)))} Safari/{cz}"
+    D=f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.{str(random.choice(range(1,7120)))}.0 Safari/537.36"
+    return random.choice([A,B,C,D])
 
-# Generate 50,000 old user agents
-for _ in range(50000):
-    choice = random.randint(1, 10)
-    
-    if choice <= 7:  # 70% old Android
-        model = random.choice(old_android_models)
-        ver = random.choice(old_android_versions)
-        build = random.choice(old_builds)
-        chrome_ver = random.choice(old_chrome_versions)
-        ua = f"Mozilla/5.0 (Linux; Android {ver}; {model} Build/{build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{random.randint(1000,4000)}.{random.randint(10,200)} Mobile Safari/537.36"
-    
-    elif choice <= 9:  # 20% old iOS
-        model = random.choice(old_ios_models)
-        ver = random.choice(old_ios_versions)
-        ua = f"Mozilla/5.0 (iPhone; CPU iPhone OS {ver} like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/{ver[:1]}.0 Mobile/12F69 Safari/600.1.4"
-    
-    else:  # 10% old Windows (Chrome or IE)
-        if random.random() < 0.5:
-            chrome_ver = random.choice(old_chrome_versions)
-            win_ver = random.choice(old_windows_nt)
-            ua = f"Mozilla/5.0 (Windows NT {win_ver}; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{random.randint(2000,5000)}.0 Safari/537.36"
-        else:
-            ua = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"  # Old IE
-    
-    old_user_agents.append(ua)
+# ============================================
+# BLOCK 3: Samsung Galaxy A Series (NEW)
+# ============================================
+for agenku in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=random.choice(['SM-A105F','SM-A107F','SM-A115F','SM-A125F','SM-A127F','SM-A135F','SM-A137F','SM-A145F','SM-A155F','SM-A205F','SM-A207F','SM-A215U','SM-A225F','SM-A235F','SM-A245F','SM-A255F','SM-A305F','SM-A307GN','SM-A315F','SM-A325F','SM-A336B','SM-A346B','SM-A356B','SM-A405FN','SM-A415F','SM-A426B','SM-A505F','SM-A515F','SM-A525F','SM-A528B','SM-A536B','SM-A546B','SM-A556B','SM-A705FN','SM-A715F','SM-A725F','SM-A736B','SM-A805F'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(1, 999)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uakuh=f'{a} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
 
-# Save to file
-with open("old_user_agents_50k.txt", "w") as f:
-    f.write("\n".join(old_user_agents))
+# ============================================
+# BLOCK 4: Samsung Galaxy M Series (NEW)
+# ============================================
+for ua in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['10','11','12','13','14','15'])
+    y=random.choice(['SM-M115F','SM-M127G','SM-M215F','SM-M225FV','SM-M315F','SM-M325F','SM-M336B','SM-M515F','SM-M526B','SM-M625F','SM-M127F'])
+    c='Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    d=random.randrange(100,130)
+    e='0'
+    f=random.randrange(3000,6000)
+    g=random.randrange(20,100)
+    h='Mobile Safari/537.36'
+    aalhaj=(f"{a} {b}; {y} {c}{d}.{e}.{f}.{g} {h}")
+    ugen.append(aalhaj)
 
-print(f"✅ Generated {len(old_user_agents)} OLD user agents (Android 4-7, old iOS, old Windows)")
-print("Sample:")
-for i in range(5):
-    print(old_user_agents[i])
+# ============================================
+# BLOCK 5: Samsung Galaxy S Series (NEW)
+# ============================================
+for ua in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['10','11','12','13','14','15'])
+    y=random.choice(['SM-G973F','SM-G975F','SM-G980F','SM-G985F','SM-G988B','SM-G991B','SM-G996B','SM-G998B','SM-S901B','SM-S906B','SM-S908B','SM-S911B','SM-S916B','SM-S918B','SM-S921B','SM-S926B','SM-S928B'])
+    c='Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    d=random.randrange(100,130)
+    e='0'
+    f=random.randrange(3000,6000)
+    g=random.randrange(20,100)
+    h='Mobile Safari/537.36'
+    alhajb=(f"{a} {b}; {y} {c}{d}.{e}.{f}.{g} {h}")
+    ugen.append(alhajb)
+
+# ============================================
+# BLOCK 6: Samsung Galaxy Note Series (NEW)
+# ============================================
+for ua in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['9','10','11','12','13','14'])
+    y=random.choice(['SM-N970F','SM-N975F','SM-N980F','SM-N985F','SM-N986B','SM-N770F'])
+    c='Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    d=random.randrange(100,130)
+    e='0'
+    f=random.randrange(3000,6000)
+    g=random.randrange(20,100)
+    h='Mobile Safari/537.36'
+    alhajc=(f"{a} {b}; {y} {c}{d}.{e}.{f}.{g} {h}")
+    ugen.append(alhajc)
+
+# ============================================
+# BLOCK 7: Xiaomi Redmi Series (NEW - Expanded)
+# ============================================
+for ua in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    xs='Redmi'
+    nx=random.choice(['Note 8','Note 8 Pro','Note 9','Note 9 Pro','Note 9S','Note 10','Note 10 Pro','Note 10S','Note 11','Note 11 Pro','Note 11S','Note 12','Note 12 Pro','Note 12S','Note 13','Note 13 Pro','K40','K40 Pro','K50','K50 Pro','K60','K60 Pro','K70','K70 Pro','9A','9C','9T','10A','10C','12C','13C','A1','A2','A3'])
+    c=f'Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    d=random.randrange(100,130)
+    e='0'
+    f=random.randrange(3000,6000)
+    g=random.randrange(20,150)
+    h='Mobile Safari/537.36'
+    alhajj=(f"{a} {b}; {xs} {nx} {c}{d}.{e}.{f}.{g} {h}")
+    ugen.append(alhajj)
+
+# ============================================
+# BLOCK 8: Xiaomi Mi Series (NEW)
+# ============================================
+for xd in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['10','11','12','13','14','15'])
+    c='Mi 10 Build/QKQ1.191117.002; wv)'
+    d='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    e=random.randrange(100,130)
+    f='0'
+    g=random.randrange(4200,4900)
+    h=random.randrange(40,150)
+    i='Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/450.0.0.42.110;]'
+    uakuh=f'{a} {b}; {c} {d}{e}.{f}.{g}.{h} {i}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 9: POCO Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['10','11','12','13','14','15'])
+    c=random.choice(['M2004J19C','M2010J19CG','M2102J20SG','M2104K10I','M2012K11AG','M2103K19I','M2104K10AC','M2007J20CI','M2010J19SY','M2102J20SI','M2104K10AG','M2006C3MII','M2007J20CT','M2010J19SL','M2102J20SY','M2104K10AI'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(80,106)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 10: Realme Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; U; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=random.choice(['RMX1801','RMX1805','RMX1821','RMX1825','RMX1831','RMX1851','RMX1901','RMX1911','RMX1921','RMX1931','RMX1941','RMX1971','RMX2001','RMX2020','RMX2027','RMX2030','RMX2040','RMX2050','RMX2061','RMX2071','RMX2086','RMX2092','RMX2101','RMX2111','RMX2117','RMX2121','RMX2144','RMX2151','RMX2161','RMX2170','RMX2180','RMX2185','RMX2193','RMX2195','RMX2200','RMX2202','RMX2205','RMX2211','RMX2220','RMX2221','RMX2232','RMX2241','RMX2242','RMX2243','RMX2251','RMX2263','RMX2264','RMX2270','RMX2271','RMX2280','RMX2282','RMX2290','RMX2301','RMX2311','RMX2312','RMX2321','RMX2333','RMX2342','RMX2350','RMX2355','RMX2361','RMX2371','RMX2380','RMX2401','RMX2404','RMX2406','RMX2411','RMX2421','RMX2431','RMX2450','RMX2460','RMX2461','RMX2462','RMX2463','RMX2471','RMX2480','RMX2481','RMX2490','RMX2500','RMX2501','RMX2502','RMX2503','RMX2504','RMX2505','RMX2506','RMX2507','RMX2508','RMX2509','RMX2510','RMX2511','RMX2512','RMX2513','RMX2514','RMX2515','RMX2516','RMX2517','RMX2518','RMX2519','RMX2520','RMX2521','RMX2522','RMX2523','RMX2524','RMX2525','RMX2526','RMX2527','RMX2528','RMX2529','RMX2530','RMX2531','RMX2532','RMX2533','RMX2534','RMX2535','RMX2536','RMX2537','RMX2538','RMX2539','RMX2540','RMX2541','RMX2542','RMX2543','RMX2544','RMX2545','RMX2546','RMX2547','RMX2548','RMX2549','RMX2550'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(1, 999)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 11: Oppo Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; U; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=(['CPH1803','CPH1809','CPH1819','CPH1823','CPH1837','CPH1853','CPH1861','CPH1871','CPH1877','CPH1881','CPH1893','CPH1901','CPH1903','CPH1907','CPH1909','CPH1911','CPH1912','CPH1917','CPH1920','CPH1923','CPH1931','CPH1933','CPH1937','CPH1938','CPH1943','CPH1945','CPH1951','CPH1955','CPH1969','CPH1979','CPH1987','CPH1989','CPH1991','CPH2001','CPH2005','CPH2009','CPH2013','CPH2015','CPH2021','CPH2023','CPH2025','CPH2035','CPH2036','CPH2037','CPH2043','CPH2059','CPH2061','CPH2065','CPH2067','CPH2069','CPH2071','CPH2073','CPH2077','CPH2083','CPH2089','CPH2091','CPH2095','CPH2099','CPH2109','CPH2113','CPH2119','CPH2121','CPH2123','CPH2125','CPH2127','CPH2131','CPH2135','CPH2137','CPH2139','CPH2145','CPH2159','CPH2161','CPH2163','CPH2173','CPH2185','CPH2195','CPH2197','CPH2201','CPH2203','CPH2205','CPH2207','CPH2209','CPH2211','CPH2213','CPH2217','CPH2219','CPH2223','CPH2235','CPH2237','CPH2239','CPH2241','CPH2247','CPH2251','CPH2269','CPH2271','CPH2273','CPH2275','CPH2285','CPH2293','CPH2305','CPH2307','CPH2309','CPH2313','CPH2315','CPH2317','CPH2321','CPH2323','CPH2325','CPH2333','CPH2337','CPH2339','CPH2341','CPH2343','CPH2345','CPH2347','CPH2349','CPH2353','CPH2355','CPH2357','CPH2359','CPH2363','CPH2365','CPH2371','CPH2373','CPH2375','CPH2381','CPH2385','CPH2387','CPH2389','CPH2391','CPH2393','CPH2395','CPH2399','CPH2401','CPH2405','CPH2407','CPH2409','CPH2411','CPH2413','CPH2415','CPH2417','CPH2419','CPH2421','CPH2423','CPH2425','CPH2427','CPH2431','CPH2437','CPH2439','CPH2441','CPH2443','CPH2447','CPH2449','CPH2451','CPH2453','CPH2455','CPH2457','CPH2459','CPH2461','CPH2465','CPH2467','CPH2469','CPH2471','CPH2473','CPH2475','CPH2477','CPH2481','CPH2483','CPH2485','CPH2487','CPH2489','CPH2491','CPH2493','CPH2495','CPH2497','CPH2499','CPH2501','CPH2503','CPH2505','CPH2507','CPH2509','CPH2513','CPH2515','CPH2517','CPH2519','CPH2521','CPH2523','CPH2525','CPH2527','CPH2529','CPH2531','CPH2533','CPH2535','CPH2537','CPH2539','CPH2541','CPH2543','CPH2545','CPH2547','CPH2549','CPH2551','CPH2553','CPH2555','CPH2557','CPH2559','CPH2561','CPH2563','CPH2565','CPH2567','CPH2569','CPH2571','CPH2573','CPH2575','CPH2577','CPH2579','CPH2581','CPH2583','CPH2585','CPH2587','CPH2589','CPH2591','CPH2593','CPH2595','CPH2597','CPH2599','CPH2601','CPH2603','CPH2605','CPH2607','CPH2609','CPH2611','CPH2613','CPH2615','CPH2617','CPH2619','CPH2621','CPH2623','CPH2625','CPH2627','CPH2629','CPH2631','CPH2633','CPH2635','CPH2637','CPH2639','CPH2641','CPH2643','CPH2645','CPH2647','CPH2649','CPH2651','CPH2653','CPH2655','CPH2657','CPH2659','CPH2661','CPH2663','CPH2665','CPH2667','CPH2669','CPH2671','CPH2673','CPH2675','CPH2677','CPH2679','CPH2681','CPH2683','CPH2685','CPH2687','CPH2689','CPH2691','CPH2693','CPH2695','CPH2697','CPH2699','CPH2701','CPH2703','CPH2705','CPH2707','CPH2709','CPH2711','CPH2713','CPH2715','CPH2717','CPH2719','CPH2721','CPH2723','CPH2725','CPH2727','CPH2729','CPH2731','CPH2733','CPH2735','CPH2737','CPH2739','CPH2741','CPH2743','CPH2745','CPH2747','CPH2749','CPH2751','CPH2753','CPH2755','CPH2757','CPH2759','CPH2761','CPH2763','CPH2765','CPH2767','CPH2769','CPH2771','CPH2773','CPH2775','CPH2777','CPH2779','CPH2781','CPH2783','CPH2785','CPH2787','CPH2789','CPH2791','CPH2793','CPH2795','CPH2797','CPH2799','CPH2801','CPH2803','CPH2805','CPH2807','CPH2809','CPH2811','CPH2813','CPH2815','CPH2817','CPH2819','CPH2821','CPH2823','CPH2825','CPH2827','CPH2829','CPH2831','CPH2833','CPH2835','CPH2837','CPH2839','CPH2841','CPH2843','CPH2845','CPH2847','CPH2849','CPH2851','CPH2853','CPH2855','CPH2857','CPH2859','CPH2861','CPH2863','CPH2865','CPH2867','CPH2869','CPH2871','CPH2873','CPH2875','CPH2877','CPH2879','CPH2881','CPH2883','CPH2885','CPH2887','CPH2889','CPH2891','CPH2893','CPH2895','CPH2897','CPH2899','CPH2901','CPH2903','CPH2905','CPH2907','CPH2909','CPH2911','CPH2913','CPH2915','CPH2917','CPH2919','CPH2921','CPH2923','CPH2925','CPH2927','CPH2929','CPH2931','CPH2933','CPH2935','CPH2937','CPH2939','CPH2941','CPH2943','CPH2945','CPH2947','CPH2949','CPH2951','CPH2953','CPH2955','CPH2957','CPH2959','CPH2961','CPH2963','CPH2965','CPH2967','CPH2969','CPH2971','CPH2973','CPH2975','CPH2977','CPH2979','CPH2981','CPH2983','CPH2985','CPH2987','CPH2989','CPH2991','CPH2993','CPH2995','CPH2997','CPH2999'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(1, 999)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36 HeyTapBrowser/45.7.0.0'
+    uakuh=(f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}')
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 12: Vivo Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; U; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=random.choice(['V1803A','V1813A','V1814A','V1818A','V1821A','V1829A','V1831A','V1832A','V1901A','V1911A','V1913A','V1914A','V1921A','V1922A','V1923A','V1930A','V1934A','V1936A','V1938A','V1938CT','V1941A','V1945A','V1950A','V1955A','V1962A','V1963A','V1979A','V1981A','V1986A','V2001A','V2002A','V2009A','V2011A','V2012A','V2020A','V2024A','V2025A','V2029A','V2031EA','V2034A','V2036A','V2040A','V2041A','V2043A','V2045A','V2046A','V2047A','V2050A','V2055A','V2056A','V2059A','V2060A','V2061A','V2065A','V2066A','V2069A','V2072A','V2073A','V2080A','V2085A','V2090A','V2099A','V2102A','V2106A','V2108A','V2111A','V2115A','V2118A','V2120A','V2121A','V2123A','V2125A','V2127A','V2130A','V2131A','V2132A','V2133A','V2134A','V2136A','V2140A','V2141A','V2143A','V2145A','V2148A','V2154A','V2156A','V2157A','V2160A','V2162A','V2164A','V2166A','V2168A','V2170A','V2171A','V2172A','V2176A','V2180A','V2183A','V2185A','V2186A','V2190A','V2196A','V2199A','V2203A','V2207A','V2208A','V2210A','V2211A','V2217A','V2218A','V2220A','V2221A','V2222A','V2227A','V2228A','V2229A','V2230A','V2231A','V2232A','V2236A','V2238A','V2241A','V2243A','V2244A','V2245A','V2246A','V2248A','V2249A','V2250A','V2252A','V2253A','V2254A','V2255A','V2256A','V2258A','V2260A','V2261A','V2262A','V2266A','V2268A','V2269A','V2270A','V2272A','V2278A','V2279A','V2280A','V2282A','V2283A','V2284A','V2285A','V2286A','V2287A','V2288A','V2290A','V2291A','V2292A','V2293A','V2294A','V2295A','V2296A','V2297A','V2298A','V2299A','V2301A','V2302A','V2303A','V2304A','V2305A','V2306A','V2307A','V2308A','V2309A','V2310A','V2311A','V2312A','V2313A','V2314A','V2315A','V2316A','V2317A','V2318A','V2319A','V2320A','V2321A','V2322A','V2323A','V2324A','V2325A','V2326A','V2327A','V2328A','V2329A','V2330A','V2331A','V2332A','V2333A','V2334A','V2335A','V2336A','V2337A','V2338A','V2339A','V2340A','V2341A','V2342A','V2343A','V2344A','V2345A','V2346A','V2347A','V2348A','V2349A','V2350A','V2351A','V2352A','V2353A','V2354A','V2355A','V2356A','V2357A','V2358A','V2359A','V2360A','V2361A','V2362A','V2363A','V2364A','V2365A','V2366A','V2367A','V2368A','V2369A','V2370A','V2371A','V2372A','V2373A','V2374A','V2375A','V2376A','V2377A','V2378A','V2379A','V2380A','V2381A','V2382A','V2383A','V2384A','V2385A','V2386A','V2387A','V2388A','V2389A','V2390A','V2391A','V2392A','V2393A','V2394A','V2395A','V2396A','V2397A','V2398A','V2399A','V2400A','V2401A','V2402A','V2403A','V2404A','V2405A','V2406A','V2407A','V2408A','V2409A','V2410A','V2411A','V2412A','V2413A','V2414A','V2415A','V2416A','V2417A','V2418A','V2419A','V2420A','V2421A','V2422A','V2423A','V2424A','V2425A','V2426A','V2427A','V2428A','V2429A','V2430A','V2431A','V2432A','V2433A','V2434A','V2435A','V2436A','V2437A','V2438A','V2439A','V2440A','V2441A','V2442A','V2443A','V2444A','V2445A','V2446A','V2447A','V2448A','V2449A','V2450A','V2451A','V2452A','V2453A','V2454A','V2455A','V2456A','V2457A','V2458A','V2459A','V2460A','V2461A','V2462A','V2463A','V2464A','V2465A','V2466A','V2467A','V2468A','V2469A','V2470A','V2471A','V2472A','V2473A','V2474A','V2475A','V2476A','V2477A','V2478A','V2479A','V2480A','V2481A','V2482A','V2483A','V2484A','V2485A','V2486A','V2487A','V2488A','V2489A','V2490A','V2491A','V2492A','V2493A','V2494A','V2495A','V2496A','V2497A','V2498A','V2499A'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(1, 999)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36 OPR/63.0.2254.62069'
+    uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 13: OnePlus Series (NEW)
+# ============================================
+for xd in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c='OnePlus 6 Build/OPR1.170623.032; wv)'
+    d='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    e=random.randrange(100,130)
+    f='0'
+    g=random.randrange(4200,4900)
+    h=random.randrange(40,150)
+    i='Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/450.0.0.42.110;]'
+    uakuh=f'{a} {b}; {c} {d}{e}.{f}.{g}.{h} {i}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 14: Google Pixel Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=random.choice(['Pixel 3','Pixel 3 XL','Pixel 3a','Pixel 3a XL','Pixel 4','Pixel 4 XL','Pixel 4a','Pixel 4a 5G','Pixel 5','Pixel 5a','Pixel 6','Pixel 6 Pro','Pixel 6a','Pixel 7','Pixel 7 Pro','Pixel 7a','Pixel 8','Pixel 8 Pro','Pixel 8a','Pixel 9','Pixel 9 Pro','Pixel 9 Pro XL','Pixel 9 Pro Fold'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(80,106)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
+
+# ============================================
+# BLOCK 15: Motorola Series (NEW)
+# ============================================
+for xd in range(10000):
+    aa='Mozilla/5.0 (Linux; U; Android'
+    b=random.choice(['9','10','11','12','13','14','15'])
+    c=random.choice(['XT1952-2','XT1962-1','XT1970-2','XT2013-4','XT2015-2','XT2041-4','XT2043-6','XT2052-2','XT2063-3','XT2071-4','XT2081-1','XT2097-2','XT2115-1','XT2125-4','XT2131-1','XT2141-1','XT2153-1','XT2163-4','XT2171-2','XT2175-2','XT2201-2','XT2203-1','XT2215-1','XT2221-2','XT2231-1','XT2241-1','XT2251-1','XT2301-1','XT2303-1','XT2305-1','XT2311-1','XT2313-1','XT2315-1','XT2321-1','XT2323-1','XT2325-1','XT2331-1','XT2333-1','XT2335-1','XT2341-1','XT2343-1','XT2345-1','XT2351-1','XT2353-1','XT2355-1','XT2361-1','XT2363-1','XT2365-1','XT2371-1','XT2373-1','XT2375-1','XT2381-1','XT2383-1','XT2385-1','XT2387-1','XT2389-1','XT2391-1','XT2393-1','XT2395-1','XT2397-1','XT2399-1','XT2401-1','XT2403-1','XT2405-1','XT2407-1','XT2409-1','XT2411-1','XT2413-1','XT2415-1','XT2417-1','XT2419-1','XT2421-1','XT2423-1','XT2425-1','XT2427-1','XT2429-1','XT2431-1','XT2433-1','XT2435-1','XT2437-1','XT2439-1','XT2441-1','XT2443-1','XT2445-1','XT2447-1','XT2449-1','XT2451-1','XT2453-1','XT2455-1','XT2457-1','XT2459-1','XT2461-1','XT2463-1','XT2465-1','XT2467-1','XT2469-1','XT2471-1','XT2473-1','XT2475-1','XT2477-1','XT2479-1','XT2481-1','XT2483-1','XT2485-1','XT2487-1','XT2489-1','XT2491-1','XT2493-1','XT2495-1','XT2497-1','XT2499-1','XT2501-1','XT2503-1','XT2505-1','XT2507-1','XT2509-1','XT2511-1','XT2513-1','XT2515-1','XT2517-1','XT2519-1','XT2521-1','XT2523-1','XT2525-1','XT2527-1','XT2529-1','XT2531-1','XT2533-1','XT2535-1','XT2537-1','XT2539-1','XT2541-1','XT2543-1','XT2545-1','XT2547-1','XT2549-1','XT2551-1','XT2553-1','XT2555-1','XT2557-1','XT2559-1','XT2561-1','XT2563-1','XT2565-1','XT2567-1','XT2569-1','XT2571-1','XT2573-1','XT2575-1','XT2577-1','XT2579-1','XT2581-1','XT2583-1','XT2585-1','XT2587-1','XT2589-1','XT2591-1','XT2593-1','XT2595-1','XT2597-1','XT2599-1'])
+    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    e=random.randrange(1, 999)
+    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    h=random.randrange(100,130)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
+    ugen.append(uakuh)
