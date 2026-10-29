@@ -73,6 +73,11 @@ class UserAgentGenerator:
         self.custom_user_agents = [
             "[FBAN/FB4A;FBAV/425.1.0.28.120;FBBV/43567891;FBDM/{density=2.0,width=720,height=1600};FBLC/en_US;FBCR/Verizon;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/SM-A137F;FBSV/12;FBOP/1;FBCA/arm64-v8a;]",
         ]
+        self.url_agents = self.load_user_agents_from_url()
+        self.all_list_agents = self.custom_user_agents + self.url_agents
+        random.shuffle(self.all_list_agents)
+        self.list_index = 0
+        self.last_ua = None
 
     def _generate_mozilla_user_agent(self):
         android_version = random.randint(4, 13)
@@ -82,11 +87,21 @@ class UserAgentGenerator:
         return f"Mozilla/5.0 (Linux; Android {android_version}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_version} Mobile Safari/537.36 [{resolution}]"
 
     def generate_user_agent(self):
-        user_agent_type = random.choice(('Mozilla', 'Opera', 'Windows', 'Android', 'Tablet', ' 'Facebook', 'Dalvik', 'iPhone', 'Custom'))
-        if user_agent_type == 'Mozilla':
-            return self._generate_mozilla_user_agent()
-        else:
-            return random.choice(self.custom_user_agents)
+        for _ in range(20):
+            if self.all_list_agents and random.random() < 0.7:
+                ua = self.all_list_agents[self.list_index]
+                self.list_index += 1
+                if self.list_index >= len(self.all_list_agents):
+                    self.list_index = 0
+                    random.shuffle(self.all_list_agents)
+            else:
+                ua = self._generate_mozilla_user_agent()
+            
+            if ua != self.last_ua:
+                self.last_ua = ua
+                return ua
+        
+        return self._generate_mozilla_user_agent()
 
     def load_user_agents_from_url(self):
         try:
@@ -103,7 +118,7 @@ class MAAZCracker:
         self.loop = 0
         self.color = NebulaColors()
         self.user_agents = UserAgentGenerator().load_user_agents_from_url()
-
+        
     def old_menu(self):
         clear()
         print(f"{self.color.P}╔═━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━═╗")
